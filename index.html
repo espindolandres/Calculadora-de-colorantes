@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Calculadora de colorantes para esmaltes (brillante, satinado y monocapa), con sólidos dependientes de la densidad." />
+  <meta name="description" content="Calculadora de colorantes para esmaltes." />
   <title>Calculadora de Colorantes para Esmalte</title>
 
   <style>
@@ -479,10 +479,9 @@
   <div class="container">
     <header class="app-header">
       <div class="title-wrap">
-        <h1>🎨 Calculadora de Colorantes para Esmalte</h1>
+        <h1>Calculadora de Colorantes para Esmalte</h1>
         <p class="subtitle">
-          Ajusta colorantes con la fórmula: <strong>Volumen (L) × Densidad (kg/L) × Sólidos × %</strong>.
-          Sólidos se calcula según el tipo de esmalte y la densidad (o puedes ingresarlos manual).
+          Los sólidos se calcula según el tipo de esmalte y la densidad 
         </p>
       </div>
       <div class="pill" title="Evita errores de unidades: el sistema normaliza todo internamente">
@@ -491,12 +490,11 @@
     </header>
 
     <main>
-      <!-- ===================== DATOS DEL ESMALTE ===================== -->
       <section class="card" aria-labelledby="hDatos">
         <div class="card-head">
           <div>
             <h2 id="hDatos">1) Datos del esmalte</h2>
-            <p class="muted">Completa volumen y densidad. El sistema calcula sólidos (Auto) según el tipo de esmalte.</p>
+            <p class="muted">El sistema calcula sólidos según el tipo de esmalte.</p>
           </div>
         </div>
 
@@ -538,7 +536,7 @@
           <div class="field col-6">
             <label for="solidosModo">Sólidos</label>
             <select id="solidosModo" aria-describedby="helpSolidos">
-              <option value="auto">Auto (según densidad y tipo)</option>
+              <option value="auto">Auto (según densidad)</option>
               <option value="manual">Manual (ingresar % sólidos)</option>
             </select>
             <p class="help" id="helpSolidos">
@@ -592,7 +590,6 @@
           <div class="alert warning" id="alertWarning" hidden></div>
           <div class="alert info" id="alertInfo">
             <strong>Tip:</strong> El porcentaje de cada colorante se aplica sobre la <strong>masa de sólidos</strong>.
-            Ejemplo: 100 L × 1.81 kg/L × 0.72 × 10% ≈ 13.03 kg.
           </div>
         </div>
       </section>
@@ -662,7 +659,7 @@
       const STORAGE_KEY = "calc-colorantes-v3";
       const MAX_COLORANTS = 6;
 
-      // Constantes por tipo (las que ya usas)
+      // Constantes por tipo
       const esmaltes = {
         brillante: { label: "Brillante", c1: 44.271, c2: -8.7573 },
         satinado:  { label: "Satinado",  c1: 44.764, c2: -11.58  },
@@ -878,7 +875,7 @@
           const tdName = document.createElement("td");
           const inputName = document.createElement("input");
           inputName.type = "text";
-          inputName.placeholder = "Ej: Azul Ftalocianina";
+          inputName.placeholder = "Ej: Azul 3304";
           inputName.value = c.name || "";
           inputName.addEventListener("input", () => {
             state.colorants[idx].name = inputName.value;
@@ -1106,7 +1103,7 @@
         // Estado / warnings
         if (totalPct > 100.0001) {
           el.outEstado.textContent = "Revisar % total";
-          setWarning("El porcentaje total de colorantes supera 100%. Verifica si eso es lo esperado para tu formulación.");
+          setWarning("El porcentaje total de colorantes supera 100%. Verifica si eso es lo esperado para la formulación.");
         } else if (totalPct === 0) {
           el.outEstado.textContent = "Sin %";
         } else {
