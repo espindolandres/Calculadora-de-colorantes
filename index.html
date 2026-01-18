@@ -8,21 +8,21 @@
 
   <style>
     :root{
-      --primary:#2180a0;
-      --primary-hover:#1a6480;
-      --primary-active:#1a5472;
+      --primary:#0b5ea8;
+      --primary-hover:#094f8f;
+      --primary-active:#073f73;
 
-      --bg-1:#f4f7fb;
+      --bg-1:#f3f5f7;
       --bg-2:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --border:#d7dde6;
+      --text:#111827;
+      --muted:#4b5563;
+      --border:#cbd5e1;
 
-      --success:#0f766e;
-      --warning:#a84b2f;
-      --error:#c0152f;
+      --success:#0a7a4b;
+      --warning:#b45309;
+      --error:#b42318;
 
-      --shadow: 0 12px 35px rgba(2, 6, 23, 0.10);
+      --shadow: 0 10px 26px rgba(0,0,0,0.10);
       --radius: 14px;
 
       --s4: 4px;
@@ -44,34 +44,26 @@
       margin:0;
       font-family:var(--font);
       color:var(--text);
-      background: radial-gradient(1200px 700px at 10% 10%, #eef6fb 0%, transparent 60%),
-                  radial-gradient(1000px 600px at 90% 0%, #f2f4ff 0%, transparent 55%),
-                  linear-gradient(135deg, #f7fbff 0%, #e8f0fb 100%);
-      padding: var(--s24);
+      background: var(--bg-1);
+      padding: 12px;
     }
 
-    .container{
-      max-width: 1020px;
-      margin: 0 auto;
-    }
+    .container{ max-width: 1020px; margin: 0 auto; }
 
     header.app-header{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap: var(--s16);
-      margin-bottom: var(--s20);
+      gap: var(--s12);
+      margin-bottom: var(--s16);
+      flex-direction: column;
     }
 
-    .title-wrap{
-      display:flex;
-      flex-direction:column;
-      gap: var(--s8);
-    }
+    .title-wrap{ display:flex; flex-direction:column; gap: var(--s8); }
 
     h1{
       margin:0;
-      font-size: clamp(1.4rem, 2.2vw, 2.0rem);
+      font-size: 1.35rem;
       letter-spacing: -0.02em;
       line-height: 1.15;
     }
@@ -79,47 +71,80 @@
     .subtitle{
       margin:0;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       line-height: 1.35;
     }
 
     .pill{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.9);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .pill-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill-badge{
       display:inline-flex;
       align-items:center;
       gap: var(--s8);
-      padding: 8px 12px;
+      padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.7);
+      background: #fff;
       color: var(--muted);
       font-size: 0.9rem;
-      white-space: nowrap;
+      white-space: normal;
     }
 
-    main{
-      display:grid;
-      gap: var(--s20);
+    .switch{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      user-select:none;
     }
+
+    .switch input{
+      width: 22px;
+      height: 22px;
+      margin: 0;
+      accent-color: var(--primary);
+    }
+
+    main{ display:grid; gap: var(--s16); }
 
     .card{
       background: var(--bg-2);
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: var(--s24);
+      padding: var(--s16);
     }
 
     .card-head{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap: var(--s16);
-      margin-bottom: var(--s16);
+      gap: var(--s12);
+      margin-bottom: var(--s12);
+      flex-direction: column;
     }
 
     .card h2{
       margin:0;
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
 
@@ -132,26 +157,16 @@
 
     .grid{
       display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: var(--s16);
-      margin-top: var(--s16);
+      grid-template-columns: 1fr;
+      gap: var(--s12);
+      margin-top: var(--s12);
     }
 
-    .col-6{ grid-column: span 6; }
-    .col-4{ grid-column: span 4; }
-    .col-8{ grid-column: span 8; }
-    .col-12{ grid-column: span 12; }
+    .col-6, .col-4, .col-8, .col-12{ grid-column: auto; }
 
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap: var(--s8);
-    }
+    .field{ display:flex; flex-direction:column; gap: var(--s8); }
 
-    label{
-      font-weight: 600;
-      font-size: 0.93rem;
-    }
+    label{ font-weight: 800; font-size: 0.93rem; }
 
     .help{
       margin: 0;
@@ -162,21 +177,19 @@
 
     .input-row{
       display:flex;
-      gap: var(--s12);
-      align-items:center;
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
     }
 
-    input, select, button{
-      font-family: var(--font);
-      font-size: 0.95rem;
-    }
+    input, select, button{ font-family: var(--font); font-size: 1rem; }
 
     input, select{
       width: 100%;
-      padding: 12px 12px;
+      padding: 14px 12px;
       border: 1px solid var(--border);
       border-radius: 10px;
-      background: #fbfcfe;
+      background: #ffffff;
       color: var(--text);
       transition: border-color .15s, box-shadow .15s, background-color .15s;
     }
@@ -184,8 +197,8 @@
     select{
       appearance:none;
       background-image:
-        linear-gradient(45deg, transparent 50%, #0f172a 50%),
-        linear-gradient(135deg, #0f172a 50%, transparent 50%);
+        linear-gradient(45deg, transparent 50%, #111827 50%),
+        linear-gradient(135deg, #111827 50%, transparent 50%);
       background-position:
         calc(100% - 18px) calc(1em + 2px),
         calc(100% - 13px) calc(1em + 2px);
@@ -197,55 +210,71 @@
     input:focus, select:focus, button:focus{
       outline:none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(33,128,160,0.16);
+      box-shadow: 0 0 0 4px rgba(11,94,168,0.16);
     }
 
-    .input-compact{
-      max-width: 200px;
-    }
+    .input-compact{ max-width: 100%; }
 
     .invalid{
-      border-color: rgba(192, 21, 47, 0.55) !important;
-      box-shadow: 0 0 0 4px rgba(192, 21, 47, 0.12) !important;
-      background: #fff7f8;
-    }
-
-    .summary{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: var(--s12);
-      margin-top: var(--s16);
-      padding-top: var(--s16);
-      border-top: 1px solid var(--border);
+      border-color: rgba(180,35,24,0.75) !important;
+      box-shadow: 0 0 0 4px rgba(180,35,24,0.12) !important;
+      background: #fff5f5 !important;
     }
 
     .metric{
-      grid-column: span 4;
-      background: linear-gradient(135deg, #f4fbfe 0%, #f7fbff 100%);
-      border: 1px solid #d8eef7;
+      background: #ffffff;
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: var(--s16);
-      min-height: 74px;
+      min-height: auto;
     }
 
-    .metric .k{
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: var(--s4);
+    .metric .k{ color: var(--muted); font-size: 0.85rem; margin-bottom: var(--s4); }
+    .metric .v{ font-weight: 900; letter-spacing: -0.01em; font-size: 1.06rem; }
+    .metric .sub{ margin-top: var(--s4); font-size: 0.85rem; color: var(--muted); font-family: var(--mono); }
+
+    .metric-key{ border-width: 2px; }
+    .metric-key .v{ font-size: 1.35rem; font-weight: 950; }
+
+    body.plant-mode .metric-key{
+      position: sticky;
+      top: 8px;
+      z-index: 6;
+      background: var(--bg-2);
+      box-shadow: var(--shadow);
     }
 
-    .metric .v{
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      font-size: 1.05rem;
+    .mini-details{
+      margin-top: 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.7);
+      overflow: hidden;
+    }
+    .mini-details summary{
+      list-style: none;
+      cursor: pointer;
+      padding: 12px 14px;
+      font-weight: 900;
+      user-select: none;
+    }
+    .mini-details summary::-webkit-details-marker{ display:none; }
+    .mini-details .mini-body{
+      padding: 12px 14px 14px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      gap: 10px;
     }
 
-    .metric .sub{
-      margin-top: var(--s4);
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-family: var(--mono);
+    .mini-metric{
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: #fff;
     }
+    .mini-metric .k{ color: var(--muted); font-size: 0.85rem; font-weight: 800; }
+    .mini-metric .v{ font-weight: 950; font-size: 1.05rem; margin-top: 2px; }
+    .mini-metric .sub{ margin-top: 2px; font-size: 0.85rem; color: var(--muted); font-family: var(--mono); }
 
     .alerts{
       margin-top: var(--s16);
@@ -257,63 +286,63 @@
       border-radius: 12px;
       padding: 12px 14px;
       border: 1px solid var(--border);
-      background: #fafcff;
+      background: #fff;
       font-size: 0.92rem;
       line-height: 1.35;
     }
-    .alert strong{ font-weight: 800; }
+    .alert strong{ font-weight: 900; }
     .alert.error{
-      border-color: rgba(192, 21, 47, 0.35);
-      background: rgba(192, 21, 47, 0.07);
+      border-color: rgba(180,35,24,0.40);
+      background: rgba(180,35,24,0.08);
     }
     .alert.warning{
-      border-color: rgba(168, 75, 47, 0.35);
-      background: rgba(168, 75, 47, 0.08);
+      border-color: rgba(180,83,9,0.40);
+      background: rgba(180,83,9,0.10);
     }
     .alert.info{
-      border-color: rgba(33,128,160, 0.30);
-      background: rgba(33,128,160, 0.07);
+      border-color: rgba(11,94,168, 0.30);
+      background: rgba(11,94,168, 0.07);
     }
 
     .btns{
       display:flex;
-      flex-wrap:wrap;
+      flex-direction: column;
       gap: var(--s12);
-      align-items:center;
+      align-items: stretch;
+      width: 100%;
     }
 
     button{
       border: 1px solid transparent;
       border-radius: 10px;
-      padding: 11px 14px;
+      padding: 14px 14px;
       cursor:pointer;
-      font-weight: 800;
+      font-weight: 900;
       transition: transform .08s, background-color .15s, border-color .15s, opacity .15s;
       user-select:none;
+      letter-spacing: 0.01em;
+      width: 100%;
     }
 
     button:active{ transform: translateY(1px); }
 
-    .btn-primary{
-      background: var(--primary);
-      color: #fff;
-    }
+    .btn-primary{ background: var(--primary); color: #fff; }
     .btn-primary:hover{ background: var(--primary-hover); }
     .btn-primary:active{ background: var(--primary-active); }
 
     .btn-secondary{
-      background: #f3f6fb;
+      background: #f1f5f9;
       color: var(--text);
       border-color: var(--border);
     }
-    .btn-secondary:hover{ background: #edf2f8; }
+    .btn-secondary:hover{ background: #e9eef5; }
 
     .btn-ghost{
       background: transparent;
       border-color: var(--border);
       color: var(--text);
     }
-    .btn-ghost:hover{ background: #f6f8fc; }
+    .btn-ghost:hover{ background: #eef2f7; }
 
     button:disabled{
       opacity: 0.55;
@@ -322,50 +351,80 @@
     }
 
     .table-wrap{
-      overflow:auto;
+      overflow: visible;
       margin-top: var(--s12);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #fff;
+      border: none;
+      border-radius: 0;
+      background: transparent;
     }
 
     table{
       width:100%;
-      border-collapse: collapse;
-      min-width: 720px;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      min-width: 0;
     }
-    thead th{
-      text-align:left;
-      font-size: 0.85rem;
-      color: var(--muted);
-      background: #f6f8fc;
-      border-bottom: 1px solid var(--border);
-      padding: 12px 12px;
-      position: sticky;
-      top: 0;
-      z-index: 1;
+
+    thead{ display: none; }
+
+    tbody tr{
+      display:block;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 12px;
     }
 
     tbody td{
-      border-bottom: 1px solid #eef2f7;
-      padding: 10px 12px;
+      display:block;
+      border: 0;
+      padding: 0;
+      margin: 0 0 10px 0;
       vertical-align: middle;
     }
 
     .col-num{
-      width: 64px;
+      width: auto;
       color: var(--muted);
       font-family: var(--mono);
     }
 
+    tbody td:nth-child(2)::before{
+      content: "Nombre";
+      display:block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    tbody td:nth-child(3)::before{
+      content: "% Color";
+      display:block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    tbody td:nth-child(4)::before{
+      content: "Cantidad a adicionar";
+      display:block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
     .result{
-      font-weight: 900;
+      font-weight: 950;
       color: var(--primary);
       letter-spacing: -0.01em;
     }
     .result-sub{
       display:block;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--muted);
       font-size: 0.84rem;
       margin-top: 2px;
@@ -375,11 +434,12 @@
     .row-actions{
       display:flex;
       justify-content:flex-end;
+      margin-bottom: 0;
     }
 
     .icon-btn{
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -388,35 +448,36 @@
       background: #fff;
       cursor:pointer;
     }
-    .icon-btn:hover{ background: #f6f8fc; }
+    .icon-btn:hover{ background: #eef2f7; }
     .icon-btn:disabled{ opacity: 0.45; cursor:not-allowed; }
 
     .totals{
       display:flex;
-      flex-wrap:wrap;
+      flex-direction: column;
       gap: var(--s12);
       margin-top: var(--s16);
       padding: var(--s16);
       border-radius: 12px;
       border: 1px solid var(--border);
-      background: linear-gradient(135deg, #f4fbfe 0%, #f7fbff 100%);
+      background: #fff;
       justify-content: space-between;
-      align-items: center;
+      align-items: stretch;
     }
 
     .total-item{
       display:flex;
       flex-direction:column;
       gap: 4px;
-      min-width: 220px;
+      min-width: 0;
     }
 
     .total-item .k{
       color: var(--muted);
       font-size: 0.85rem;
+      font-weight: 800;
     }
     .total-item .v{
-      font-weight: 900;
+      font-weight: 950;
       font-size: 1.05rem;
       letter-spacing: -0.01em;
     }
@@ -438,13 +499,125 @@
     }
     footer strong{ color: var(--text); }
 
-    @media (max-width: 920px){
-      .col-6, .col-4, .col-8{ grid-column: span 12; }
-      .metric{ grid-column: span 12; }
-      header.app-header{ flex-direction:column; align-items:flex-start; }
-      .pill{ width: fit-content; }
-      table{ min-width: 640px; }
+    @media (min-width: 601px){
+      body{ padding: var(--s24); }
+
+      header.app-header{
+        flex-direction: row;
+        align-items:flex-start;
+        gap: var(--s16);
+      }
+
+      .pill{
+        width: auto;
+        min-width: 360px;
+      }
+
+      .grid{
+        grid-template-columns: repeat(12, 1fr);
+        gap: var(--s16);
+      }
+
+      .col-6{ grid-column: span 6; }
+      .col-4{ grid-column: span 4; }
+      .col-8{ grid-column: span 8; }
+      .col-12{ grid-column: span 12; }
+
+      .input-row{
+        flex-direction: row;
+        align-items:center;
+        gap: var(--s12);
+      }
+      .input-compact{ max-width: 200px; }
+
+      .btns{
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        width: auto;
+      }
+      button{ width: auto; }
+
+      .table-wrap{
+        overflow:auto;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: #fff;
+      }
+
+      table{
+        border-collapse: collapse;
+        border-spacing: 0;
+        min-width: 720px;
+      }
+
+      thead{ display: table-header-group; }
+
+      thead th{
+        text-align:left;
+        font-size: 0.85rem;
+        color: var(--muted);
+        background: #f1f5f9;
+        border-bottom: 1px solid var(--border);
+        padding: 12px 12px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      tbody tr{
+        display: table-row;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+
+      tbody td{
+        display: table-cell;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 10px 12px;
+        margin: 0;
+      }
+
+      tbody td:nth-child(2)::before,
+      tbody td:nth-child(3)::before,
+      tbody td:nth-child(4)::before{
+        content: "";
+        display:none;
+      }
+
+      .row-actions{ justify-content:flex-end; }
+      .icon-btn{ width: 44px; height: 44px; }
     }
+
+    body.plant-mode{ background: #eef1f4; }
+
+    body.plant-mode input,
+    body.plant-mode select{
+      padding: 18px 14px;
+      font-size: 1.1rem;
+    }
+
+    body.plant-mode button{
+      padding: 16px 18px;
+      font-size: 1.1rem;
+    }
+
+    body.plant-mode .icon-btn{
+      width: 56px;
+      height: 56px;
+    }
+
+    body.plant-mode .card{ border-width: 2px; }
+
+    body.plant-mode .metric .v,
+    body.plant-mode .total-item .v{
+      font-size: 1.2rem;
+    }
+
+    body.plant-mode .result{ font-size: 1.12rem; }
 
     @media (prefers-reduced-motion: reduce){
       *{ transition:none !important; }
@@ -460,17 +633,57 @@
         --border:#263247;
         --shadow: 0 12px 35px rgba(0,0,0,0.55);
       }
-      body{
-        background: radial-gradient(1200px 700px at 10% 10%, rgba(33,128,160,0.18) 0%, transparent 55%),
-                    radial-gradient(1000px 600px at 90% 0%, rgba(99,102,241,0.18) 0%, transparent 55%),
-                    linear-gradient(135deg, #0b1220 0%, #0b1020 100%);
-      }
+      body{ background: var(--bg-1); }
       input,select{ background:#0b1326; color: var(--text); }
-      thead th{ background:#0b1326; }
       .table-wrap{ background:#0f172a; }
-      .metric{ background: linear-gradient(135deg, rgba(33,128,160,0.12) 0%, rgba(33,128,160,0.06) 100%); border-color: rgba(33,128,160,0.18); }
-      .totals{ background: linear-gradient(135deg, rgba(33,128,160,0.10) 0%, rgba(33,128,160,0.06) 100%); }
+      .metric{ background:#0b1326; border-color: var(--border); }
+      .totals{ background:#0b1326; border-color: var(--border); }
+      .pill{ background: rgba(15,23,42,0.9); }
+      .pill-badge{ background:#0b1326; }
       .icon-btn{ background:#0b1326; }
+      .mini-details{ background: rgba(15,23,42,0.55); }
+      .mini-metric{ background:#0b1326; border-color: var(--border); }
+      body.plant-mode .metric-key{ background: var(--bg-2); }
+    }
+
+    /* =========================
+       ✅ OCULTAR SÓLIDOS (TOTAL)
+       ========================= */
+    #wrapSolidosModo,
+    #wrapSolidosManual,
+    #solidosModo,
+    #solidosManual,
+    label[for="solidosModo"],
+    label[for="solidosManual"]{
+      display: none !important;
+    }
+
+    /* =========================
+       ✅ DETALLES COMO BOTÓN COMPACTO
+       ========================= */
+    .mini-details summary{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      background: #eef2f7;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      padding: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .mini-details summary:hover{
+      background:#e5eaf1;
+    }
+
+    .mini-details[open] summary{
+      background:#e0e7f1;
+    }
+
+    /* ✅ Ocultar TIP hasta que se abra el detalle */
+    #detailsSolidos:not([open]) #alertInfo{
+      display: none;
     }
   </style>
 </head>
@@ -485,19 +698,34 @@
           Sólidos se calcula según el tipo de esmalte.
         </p>
       </div>
-      <div class="pill" title="Evita errores de unidades: el sistema normaliza todo internamente">
-        ✅ Unidades claras • Export TXT/CSV • Guardado automático
+
+      <div class="pill" title="Diseño industrial + modo planta para pantallas táctiles">
+        <div class="pill-row">
+          <div class="pill-badge">✅ Unidades claras • Export TXT/CSV • Guardado automático</div>
+          <label class="switch" for="plantMode">
+            <input id="plantMode" type="checkbox" />
+            <span><strong>Modo Planta</strong> (guantes/táctil)</span>
+          </label>
+        </div>
+        <div style="font-size:0.88rem; color:var(--muted); line-height:1.35;">
+          En <strong>Modo Planta</strong> aumentan tamaños táctiles (botones/inputs), filas y números para mejor lectura a distancia.
+        </div>
       </div>
     </header>
 
     <main>
-      <!-- ===================== DATOS DEL ESMALTE ===================== -->
       <section class="card" aria-labelledby="hDatos">
         <div class="card-head">
           <div>
             <h2 id="hDatos">1) Datos del esmalte</h2>
             <p class="muted">Completa volumen y densidad.</p>
           </div>
+        </div>
+
+        <div class="metric metric-key" aria-live="polite" style="margin-bottom: var(--s16);">
+          <div class="k">Masa de sólidos (base para %)</div>
+          <div class="v" id="outMasaSolidos">—</div>
+          <div class="sub">Masa total × Sólidos</div>
         </div>
 
         <div class="grid">
@@ -535,69 +763,67 @@
             <p class="help" id="helpDensidad">Ejemplo: <strong>1.81 kg/L</strong> equivale a <strong>1810 kg/m³</strong>. Se convierte automáticamente.</p>
           </div>
 
-          <div class="field col-6">
+          <!-- OCULTOS -->
+          <div class="field col-6" id="wrapSolidosModo" hidden>
             <label for="solidosModo">Sólidos</label>
-            <select id="solidosModo" aria-describedby="helpSolidos">
-              <option value="auto">Auto (según densidad y tipo)</option>
-              <option value="manual">Manual (ingresar % sólidos)</option>
+            <select id="solidosModo">
+              <option value="auto">Auto</option>
+              <option value="manual">Manual</option>
             </select>
-            <p class="help" id="helpSolidos">
-              Auto usa: <span style="font-family:var(--mono)">Sólidos(%) = densidad(kg/L) × c1 + c2</span>.
-              (c1 y c2 dependen del esmalte).
-            </p>
           </div>
 
           <div class="field col-6" id="wrapSolidosManual" hidden>
             <label for="solidosManual">Sólidos manual (%)</label>
-            <input id="solidosManual" type="text" inputmode="decimal" placeholder="Ej: 72" aria-describedby="helpSolidosManual"/>
-            <p class="help" id="helpSolidosManual">Ingresa el porcentaje de sólidos (0–100). Se convertirá a fracción (0–1).</p>
+            <input id="solidosManual" type="text" inputmode="decimal" placeholder="Ej: 72"/>
           </div>
-        </div>
 
-        <div class="summary" aria-live="polite">
-          <div class="metric">
-            <div class="k">Volumen normalizado</div>
-            <div class="v" id="outVolumenL">—</div>
-            <div class="sub" id="outVolumenRaw">—</div>
-          </div>
-          <div class="metric">
-            <div class="k">Densidad normalizada</div>
-            <div class="v" id="outDensidadKgL">—</div>
-            <div class="sub" id="outDensidadRaw">—</div>
-          </div>
-          <div class="metric">
-            <div class="k">Sólidos</div>
-            <div class="v" id="outSolidosPct">—</div>
-            <div class="sub" id="outSolidosFrac">—</div>
-          </div>
-          <div class="metric">
-            <div class="k">Masa total del esmalte</div>
-            <div class="v" id="outMasaTotal">—</div>
-            <div class="sub">Volumen(L) × Densidad(kg/L)</div>
-          </div>
-          <div class="metric">
-            <div class="k">Masa de sólidos</div>
-            <div class="v" id="outMasaSolidos">—</div>
-            <div class="sub">Masa total × Sólidos</div>
-          </div>
-          <div class="metric">
-            <div class="k">Constantes del tipo</div>
-            <div class="v" id="outConstantes">—</div>
-            <div class="sub">Auto: S(%) = dens×c1 + c2</div>
-          </div>
-        </div>
+          <div class="field col-12">
+            <details class="mini-details" id="detailsSolidos">
+              <summary>📌 Ver detalles de cálculo</summary>
+              <div class="mini-body">
+                <div class="mini-metric">
+                  <div class="k">Volumen normalizado</div>
+                  <div class="v" id="outVolumenL">—</div>
+                  <div class="sub" id="outVolumenRaw">—</div>
+                </div>
 
-        <div class="alerts">
-          <div class="alert error" id="alertError" hidden></div>
-          <div class="alert warning" id="alertWarning" hidden></div>
-          <div class="alert info" id="alertInfo">
-            <strong>Tip:</strong> El porcentaje de cada colorante se aplica sobre la <strong>masa de sólidos</strong>.
-            Ejemplo: 100 L × 1.81 kg/L × 0.72 × 10% ≈ 13.03 kg.
+                <div class="mini-metric">
+                  <div class="k">Densidad normalizada</div>
+                  <div class="v" id="outDensidadKgL">—</div>
+                  <div class="sub" id="outDensidadRaw">—</div>
+                </div>
+
+                <div class="mini-metric">
+                  <div class="k">Sólidos</div>
+                  <div class="v" id="outSolidosPct">—</div>
+                  <div class="sub" id="outSolidosFrac">—</div>
+                </div>
+
+                <div class="mini-metric">
+                  <div class="k">Masa total</div>
+                  <div class="v" id="outMasaTotal">—</div>
+                  <div class="sub">Volumen(L) × Densidad(kg/L)</div>
+                </div>
+
+                <div class="mini-metric">
+                  <div class="k">Constantes del tipo</div>
+                  <div class="v" id="outConstantes">—</div>
+                  <div class="sub">Auto: S(%) = dens×c1 + c2</div>
+                </div>
+
+                <div class="alerts" style="margin-top: 0;">
+                  <div class="alert error" id="alertError" hidden></div>
+                  <div class="alert warning" id="alertWarning" hidden></div>
+                  <div class="alert info" id="alertInfo">
+                    <strong>Tip:</strong> El porcentaje de cada colorante se aplica sobre la <strong>masa de sólidos</strong>.
+                  </div>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
       </section>
 
-      <!-- ===================== COLORANTES ===================== -->
       <section class="card" aria-labelledby="hColorantes">
         <div class="card-head">
           <div>
@@ -661,18 +887,20 @@
 
       const STORAGE_KEY = "calc-colorantes-v3";
       const MAX_COLORANTS = 6;
+      const PLANT_KEY = "calc-colorantes-plant-mode";
 
-      // Constantes por tipo (las que ya usas)
       const esmaltes = {
         brillante: { label: "Brillante", c1: 44.271, c2: -8.7573 },
         satinado:  { label: "Satinado",  c1: 44.764, c2: -11.58  },
         monocapa:  { label: "Monocapa",  c1: 46.75,  c2: -15.389 }
       };
 
-      // --------- Helpers ---------
       const nf2 = new Intl.NumberFormat("es-CO", { maximumFractionDigits: 2 });
       const nf4 = new Intl.NumberFormat("es-CO", { maximumFractionDigits: 4 });
       const nf6 = new Intl.NumberFormat("es-CO", { maximumFractionDigits: 6 });
+
+      const nf3fixed = new Intl.NumberFormat("es-CO", { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+      const nf3 = new Intl.NumberFormat("es-CO", { minimumFractionDigits: 3, maximumFractionDigits: 3 });
 
       function parseNumber(value) {
         if (value == null) return NaN;
@@ -680,10 +908,6 @@
         if (!s) return NaN;
         const n = Number(s);
         return Number.isFinite(n) ? n : NaN;
-      }
-
-      function clamp(n, min, max) {
-        return Math.min(max, Math.max(min, n));
       }
 
       function formatKg(kg) {
@@ -709,13 +933,28 @@
         };
       }
 
+      function formatVolRaw(volRaw, volU) {
+        if (!Number.isFinite(volRaw)) return "—";
+        return (volU === "mililitros") ? nf3fixed.format(volRaw) : nf4.format(volRaw);
+      }
+
+      // ✅ 3 decimales en g / kg / mg
       function massToPretty(g) {
         if (!Number.isFinite(g)) return { main: "—", sub: "" };
-        if (Math.abs(g) >= 1000) {
-          const kg = g / 1000;
-          return { main: `${nf2.format(kg)} kg`, sub: `${nf2.format(g)} g` };
+
+        const abs = Math.abs(g);
+
+        if (abs > 0 && abs < 1) {
+          const mg = g * 1000;
+          return { main: `${nf3.format(mg)} mg`, sub: "" };
         }
-        return { main: `${nf2.format(g)} g`, sub: "" };
+
+        if (abs >= 1000) {
+          const kg = g / 1000;
+          return { main: `${nf3.format(kg)} kg`, sub: `${nf3.format(g)} g` };
+        }
+
+        return { main: `${nf3.format(g)} g`, sub: "" };
       }
 
       function downloadFile(filename, mime, content) {
@@ -741,6 +980,7 @@
         el.alertWarning.textContent = "";
       }
 
+      // ✅ NO abrir details automáticamente
       function setError(msg) {
         el.alertError.textContent = msg;
         el.alertError.hidden = false;
@@ -751,13 +991,15 @@
         el.alertWarning.hidden = false;
       }
 
-      // --------- DOM ---------
       const el = {
+        plantMode: document.getElementById("plantMode"),
+
         esmalteTipo: document.getElementById("esmalteTipo"),
         volumen: document.getElementById("volumen"),
         volumenUnidad: document.getElementById("volumenUnidad"),
         densidad: document.getElementById("densidad"),
         densidadUnidad: document.getElementById("densidadUnidad"),
+
         solidosModo: document.getElementById("solidosModo"),
         solidosManual: document.getElementById("solidosManual"),
         wrapSolidosManual: document.getElementById("wrapSolidosManual"),
@@ -775,6 +1017,8 @@
         alertError: document.getElementById("alertError"),
         alertWarning: document.getElementById("alertWarning"),
 
+        detailsSolidos: document.getElementById("detailsSolidos"),
+
         body: document.getElementById("colorantsBody"),
         outPctTotal: document.getElementById("outPctTotal"),
         outTotalAdd: document.getElementById("outTotalAdd"),
@@ -789,7 +1033,6 @@
         toast: document.getElementById("toast")
       };
 
-      // --------- Estado ---------
       function defaultColorants() {
         return [
           { name: "", pct: "" },
@@ -822,8 +1065,8 @@
             volU: s.volU || "litros",
             dens: s.dens ?? "",
             densU: s.densU || "kgL",
-            solModo: s.solModo || "auto",
-            solMan: s.solMan ?? "",
+            solModo: "auto",
+            solMan: "",
             colorants: c.length ? c : defaultColorants()
           };
         } catch {
@@ -841,21 +1084,22 @@
       }
 
       function saveState() {
+        state.solModo = "auto";
+        state.solMan = "";
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       }
 
-      // --------- Render ---------
       function renderAll() {
-        // set inputs
         el.esmalteTipo.value = state.tipo;
         el.volumen.value = state.vol;
         el.volumenUnidad.value = state.volU;
         el.densidad.value = state.dens;
         el.densidadUnidad.value = state.densU;
-        el.solidosModo.value = state.solModo;
-        el.solidosManual.value = state.solMan;
 
-        el.wrapSolidosManual.hidden = state.solModo !== "manual";
+        // Forzar sólidos auto (aunque estén ocultos)
+        if (el.solidosModo) { el.solidosModo.value = "auto"; el.solidosModo.disabled = true; }
+        if (el.solidosManual) { el.solidosManual.value = ""; el.solidosManual.disabled = true; }
+        if (el.wrapSolidosManual) el.wrapSolidosManual.hidden = true;
 
         updateDensityPlaceholder();
         renderColorants();
@@ -868,13 +1112,11 @@
         state.colorants.forEach((c, idx) => {
           const tr = document.createElement("tr");
 
-          // # column
           const tdNum = document.createElement("td");
           tdNum.className = "col-num";
           tdNum.textContent = String(idx + 1);
           tr.appendChild(tdNum);
 
-          // Name
           const tdName = document.createElement("td");
           const inputName = document.createElement("input");
           inputName.type = "text";
@@ -888,7 +1130,6 @@
           tdName.appendChild(inputName);
           tr.appendChild(tdName);
 
-          // Percent
           const tdPct = document.createElement("td");
           const inputPct = document.createElement("input");
           inputPct.type = "text";
@@ -903,7 +1144,6 @@
           tdPct.appendChild(inputPct);
           tr.appendChild(tdPct);
 
-          // Result
           const tdRes = document.createElement("td");
           const resMain = document.createElement("span");
           resMain.className = "result";
@@ -919,7 +1159,6 @@
           tdRes.appendChild(resSub);
           tr.appendChild(tdRes);
 
-          // Remove button
           const tdRm = document.createElement("td");
           tdRm.className = "row-actions";
           const btn = document.createElement("button");
@@ -943,15 +1182,9 @@
       }
 
       function updateDensityPlaceholder() {
-        // Solo para guiar al usuario
-        if (el.densidadUnidad.value === "kgm3") {
-          el.densidad.placeholder = "Ej: 1810";
-        } else {
-          el.densidad.placeholder = "Ej: 1.81";
-        }
+        el.densidad.placeholder = (el.densidadUnidad.value === "kgm3") ? "Ej: 1810" : "Ej: 1.81";
       }
 
-      // --------- Cálculo ---------
       function getNormalizedInputs() {
         const tipo = el.esmalteTipo.value;
 
@@ -965,18 +1198,10 @@
         const densU = el.densidadUnidad.value;
         if (Number.isFinite(densKgL) && densU === "kgm3") densKgL = densKgL / 1000;
 
-        const solModo = el.solidosModo.value;
-        const solManPct = parseNumber(el.solidosManual.value);
-
-        return { tipo, volRaw, volU, volL, densRaw, densU, densKgL, solModo, solManPct };
+        return { tipo, volRaw, volU, volL, densRaw, densU, densKgL };
       }
 
-      function computeSolidsFrac(tipo, densKgL, solModo, solManPct) {
-        if (solModo === "manual") {
-          if (!Number.isFinite(solManPct)) return NaN;
-          return solManPct / 100;
-        }
-        // Auto
+      function computeSolidsFrac(tipo, densKgL) {
         const { c1, c2 } = esmaltes[tipo];
         if (!Number.isFinite(densKgL)) return NaN;
         return ((densKgL * c1) + c2) / 100;
@@ -986,16 +1211,16 @@
         clearAlerts();
         showToast("");
 
-        // limpiar estilos invalid
-        [el.volumen, el.densidad, el.solidosManual].forEach(x => x.classList.remove("invalid"));
+        state.solModo = "auto";
+        state.solMan = "";
 
-        const { tipo, volRaw, volU, volL, densRaw, densU, densKgL, solModo, solManPct } = getNormalizedInputs();
+        [el.volumen, el.densidad].forEach(x => x.classList.remove("invalid"));
+
+        const { tipo, volRaw, volU, volL, densRaw, densU, densKgL } = getNormalizedInputs();
         const { c1, c2, label } = esmaltes[tipo];
 
-        // Mostrar constantes del tipo
         el.outConstantes.textContent = `${label}: c1=${c1}, c2=${c2}`;
 
-        // Validaciones mínimas
         let hasError = false;
 
         if (!Number.isFinite(volRaw) || volRaw <= 0) {
@@ -1008,31 +1233,21 @@
           el.densidad.classList.add("invalid");
         }
 
-        if (solModo === "manual") {
-          if (!Number.isFinite(solManPct) || solManPct <= 0) {
-            hasError = true;
-            el.solidosManual.classList.add("invalid");
-          }
-        }
-
-        // Normalizados en pantalla
         el.outVolumenL.textContent = formatL(Number.isFinite(volL) ? volL : NaN);
-        el.outVolumenRaw.textContent = `entrada: ${Number.isFinite(volRaw) ? nf4.format(volRaw) : "—"} ${volU === "litros" ? "L" : "mL"}`;
+        el.outVolumenRaw.textContent = `entrada: ${formatVolRaw(volRaw, volU)} ${volU === "litros" ? "L" : "mL"}`;
 
         el.outDensidadKgL.textContent = Number.isFinite(densKgL) ? `${nf4.format(densKgL)} kg/L` : "—";
         el.outDensidadRaw.textContent = `entrada: ${Number.isFinite(densRaw) ? nf4.format(densRaw) : "—"} ${densU === "kgL" ? "kg/L" : "kg/m³"}`;
 
-        const solFrac = computeSolidsFrac(tipo, densKgL, solModo, solManPct);
+        const solFrac = computeSolidsFrac(tipo, densKgL);
         const solidsFmt = formatSolids(solFrac);
         el.outSolidosPct.textContent = solidsFmt.pct;
         el.outSolidosFrac.textContent = solidsFmt.frac;
 
-        // advertencia si sólidos fuera de rango típico
         if (Number.isFinite(solFrac) && (solFrac <= 0 || solFrac > 1)) {
-          setWarning("Sólidos calculados fuera de rango (0–1). Revisa unidad de densidad o usa 'Sólidos manual'.");
+          setWarning("Sólidos calculados fuera de rango (0–1). Revisa unidad de densidad.");
         }
 
-        // Si hay error fuerte, no calculamos masas
         const canCompute =
           !hasError &&
           Number.isFinite(volL) && volL > 0 &&
@@ -1042,7 +1257,7 @@
         if (!canCompute) {
           el.outMasaTotal.textContent = "—";
           el.outMasaSolidos.textContent = "—";
-          // resultados por fila
+
           state.colorants.forEach((_, idx) => {
             const main = document.getElementById(`resMain-${idx}`);
             const sub = document.getElementById(`resSub-${idx}`);
@@ -1058,21 +1273,17 @@
           el.btnTxt.disabled = true;
           el.btnCsv.disabled = true;
 
-          if (hasError) {
-            setError("Completa volumen, densidad y sólidos (si está en modo manual). Revisa campos en rojo.");
-          }
+          if (hasError) setError("Completa volumen y densidad. Revisa campos en rojo.");
           lastComputed = { canCompute: false };
           return;
         }
 
-        // Masas base
         const masaTotalKg = volL * densKgL;
         const masaSolidosKg = masaTotalKg * solFrac;
 
         el.outMasaTotal.textContent = formatKg(masaTotalKg);
         el.outMasaSolidos.textContent = formatKg(masaSolidosKg);
 
-        // Colorantes
         let totalPct = 0;
         let totalG = 0;
 
@@ -1080,7 +1291,6 @@
           const pct = parseNumber(c.pct);
           const pctClamped = Number.isFinite(pct) ? pct : 0;
 
-          // marcar invalid si pct > 100 o < 0
           const pctInput = el.body.querySelectorAll("tr")[idx]?.querySelectorAll("input")[1];
           if (pctInput) {
             pctInput.classList.toggle("invalid", Number.isFinite(pct) && (pct < 0 || pct > 100));
@@ -1088,7 +1298,7 @@
 
           totalPct += pctClamped;
 
-          const g = masaSolidosKg * (pctClamped / 100) * 1000; // kg -> g
+          const g = masaSolidosKg * (pctClamped / 100) * 1000;
           totalG += g;
 
           const pretty = massToPretty(g);
@@ -1103,7 +1313,6 @@
         const prettyTotal = massToPretty(totalG);
         el.outTotalAdd.textContent = prettyTotal.main;
 
-        // Estado / warnings
         if (totalPct > 100.0001) {
           el.outEstado.textContent = "Revisar % total";
           setWarning("El porcentaje total de colorantes supera 100%. Verifica si eso es lo esperado para tu formulación.");
@@ -1113,7 +1322,6 @@
           el.outEstado.textContent = "OK";
         }
 
-        // Habilitar export si hay al menos un colorante con pct > 0 o nombre
         const hasAny = state.colorants.some(c => {
           const p = parseNumber(c.pct);
           return (Number.isFinite(p) && p > 0) || (String(c.name || "").trim().length > 0);
@@ -1133,9 +1341,7 @@
           densU,
           densRaw,
           densKgL,
-          solModo,
           solFrac,
-          solManPct,
           c1, c2,
           masaTotalKg,
           masaSolidosKg,
@@ -1153,7 +1359,6 @@
         };
       }
 
-      // --------- Reportes ---------
       function buildReportText(data) {
         const dt = data.generatedAt.toISOString().replace("T", " ").slice(0, 19);
 
@@ -1161,13 +1366,12 @@
         t += "=== REPORTE DE COLORANTES ===\n";
         t += `Generado: ${dt}\n\n`;
         t += `Tipo de esmalte: ${data.tipoLabel.toUpperCase()} (c1=${data.c1}, c2=${data.c2})\n`;
-        t += `Volumen: ${Number.isFinite(data.volRaw) ? nf4.format(data.volRaw) : "—"} ${data.volU === "litros" ? "L" : "mL"}  | Normalizado: ${nf4.format(data.volL)} L\n`;
+
+        const volRawFmt = formatVolRaw(data.volRaw, data.volU);
+        t += `Volumen: ${volRawFmt} ${data.volU === "litros" ? "L" : "mL"}  | Normalizado: ${nf4.format(data.volL)} L\n`;
+
         t += `Densidad: ${Number.isFinite(data.densRaw) ? nf4.format(data.densRaw) : "—"} ${data.densU === "kgL" ? "kg/L" : "kg/m³"} | Normalizado: ${nf4.format(data.densKgL)} kg/L\n`;
-        if (data.solModo === "manual") {
-          t += `Sólidos: MANUAL ${nf2.format(data.solManPct)}%  (fracción ${nf6.format(data.solFrac)})\n`;
-        } else {
-          t += `Sólidos: AUTO ${nf2.format(data.solFrac * 100)}%  (fracción ${nf6.format(data.solFrac)})\n`;
-        }
+        t += `Sólidos: AUTO ${nf2.format(data.solFrac * 100)}%  (fracción ${nf6.format(data.solFrac)})\n`;
         t += `Masa total: ${nf2.format(data.masaTotalKg)} kg\n`;
         t += `Masa de sólidos: ${nf2.format(data.masaSolidosKg)} kg\n\n`;
 
@@ -1175,33 +1379,33 @@
         data.colorants.forEach((c, i) => {
           if (c.pct > 0 || c.name) {
             const name = c.name || `Colorante ${i + 1}`;
+            const pretty = massToPretty(c.g);
             t += `\n${name}\n`;
             t += `  %: ${nf2.format(c.pct)}%\n`;
-            t += `  Cantidad: ${nf2.format(c.kg)} kg (${nf2.format(c.g)} g)\n`;
+            t += `  Cantidad: ${pretty.main}${pretty.sub ? ` (${pretty.sub})` : ""}\n`;
           }
         });
 
+        const prettyTotal = massToPretty(data.totalG);
         t += `\n\nTotales:\n`;
         t += `  % total: ${nf2.format(data.totalPct)}%\n`;
-        t += `  Total a adicionar: ${nf2.format(data.totalKg)} kg (${nf2.format(data.totalG)} g)\n`;
+        t += `  Total a adicionar: ${prettyTotal.main}${prettyTotal.sub ? ` (${prettyTotal.sub})` : ""}\n`;
 
         return t;
       }
 
       function buildCSV(data) {
-        // CSV simple: nombre, porcentaje, kg, g
         const lines = [];
         lines.push("nombre,porcentaje,kg,g");
 
         data.colorants.forEach((c, i) => {
           if (c.pct > 0 || c.name) {
             const name = (c.name || `Colorante ${i + 1}`).replaceAll('"', '""');
-            lines.push(`"${name}",${c.pct.toFixed(4)},${c.kg.toFixed(6)},${c.g.toFixed(2)}`);
+            lines.push(`"${name}",${c.pct.toFixed(4)},${c.kg.toFixed(6)},${c.g.toFixed(3)}`);
           }
         });
 
-        // Totales al final
-        lines.push(`"TOTAL",${data.totalPct.toFixed(4)},${data.totalKg.toFixed(6)},${data.totalG.toFixed(2)}`);
+        lines.push(`"TOTAL",${data.totalPct.toFixed(4)},${data.totalKg.toFixed(6)},${data.totalG.toFixed(3)}`);
         return lines.join("\n");
       }
 
@@ -1217,7 +1421,6 @@
           }
         } catch {}
 
-        // Fallback
         const ta = document.createElement("textarea");
         ta.value = text;
         document.body.appendChild(ta);
@@ -1248,8 +1451,30 @@
         showToast("⬇️ CSV descargado.");
       }
 
-      // --------- Eventos ---------
+      function applyPlantMode(isOn) {
+        document.body.classList.toggle("plant-mode", !!isOn);
+        if (el.plantMode) el.plantMode.checked = !!isOn;
+        try { localStorage.setItem(PLANT_KEY, JSON.stringify(!!isOn)); } catch {}
+      }
+
+      function loadPlantMode() {
+        try {
+          const raw = localStorage.getItem(PLANT_KEY);
+          if (!raw) return false;
+          return !!JSON.parse(raw);
+        } catch {
+          return false;
+        }
+      }
+
       function wireEvents() {
+        if (el.plantMode) {
+          el.plantMode.addEventListener("change", () => {
+            applyPlantMode(el.plantMode.checked);
+            showToast(el.plantMode.checked ? "🧤 Modo Planta activado." : "📱 Modo Planta desactivado.");
+          });
+        }
+
         el.esmalteTipo.addEventListener("change", () => {
           state.tipo = el.esmalteTipo.value;
           saveState();
@@ -1281,19 +1506,6 @@
           compute();
         });
 
-        el.solidosModo.addEventListener("change", () => {
-          state.solModo = el.solidosModo.value;
-          el.wrapSolidosManual.hidden = state.solModo !== "manual";
-          saveState();
-          compute();
-        });
-
-        el.solidosManual.addEventListener("input", () => {
-          state.solMan = el.solidosManual.value;
-          saveState();
-          compute();
-        });
-
         el.btnAdd.addEventListener("click", () => {
           if (state.colorants.length >= MAX_COLORANTS) {
             showToast(`Máximo ${MAX_COLORANTS} colorantes.`);
@@ -1318,9 +1530,17 @@
         el.btnCsv.addEventListener("click", exportCSV);
       }
 
-      // --------- Init ---------
       function init() {
         document.getElementById("anio-actual").textContent = new Date().getFullYear();
+
+        applyPlantMode(loadPlantMode());
+
+        // ✅ Siempre cerrado al cargar
+        if (el.detailsSolidos) {
+          el.detailsSolidos.removeAttribute("open");
+          el.detailsSolidos.open = false;
+        }
+
         wireEvents();
         renderAll();
       }
